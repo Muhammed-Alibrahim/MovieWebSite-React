@@ -1,12 +1,25 @@
 import axios from 'axios';
 import React , {useState ,useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-
+// No changes needed in the placeholder as the route parameters `id` and `mediaType` are already being used correctly.
 export default function MovieDetails() {
   let {id , mediaType } = useParams();
   const [details , setDetails ] = useState({});
+  const addToWatchlist = (movie) => {
+    const storedWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    const isAlreadyInWatchlist = storedWatchlist.some(
+      (watchlistItem) => watchlistItem.id === movie.id
+    );
 
-  async function getApiTrending(mediaType , id){
+    if (!isAlreadyInWatchlist) {
+      const updatedWatchlist = [...storedWatchlist, movie];
+      localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
+      alert(`${movie.title || movie.name} has been added to your watchlist!`);
+    } else {
+      alert(`${movie.title || movie.name} is already in your watchlist.`);
+    }
+  };
+  async function getApiTrending(mediaType, id) {
     
     let {data} = await axios.get(`https://api.themoviedb.org/3/${mediaType}/${id}?api_key=09b639ab0b2b1b51b00568871d53f9fe&language=en-US`)
     setDetails(data);
@@ -26,7 +39,15 @@ export default function MovieDetails() {
           {details.vote_average}
         <div>
           <button className='d-inline-block btn btn-info me-4 my-3'>play now</button>
-          <button className='d-inline-block btn btn-info my-3'>watch trailer</button>
+          <button
+            className="d-inline-block btn btn-info me-4 my-3"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent navigation when clicking the button
+                addToWatchlist(details);
+            }}
+          >
+            Add to Watchlist
+          </button>
         </div>
 
         </div>

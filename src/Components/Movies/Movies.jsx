@@ -116,32 +116,37 @@ export default function Movies() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-
-      {/* Display Filtered Movies */}
-      <div className="row">
-        {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie, index) => (
-            <div key={index} className="col-md-3 my-3">
-              <div className="card bg-dark text-white">
-                <img
-                  src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                      : 'https://via.placeholder.com/300x450?text=No+Image'
-                  }
-                  className="card-img-top"
-                  alt={movie.title}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{movie.title}</h5>
-                </div>
-              </div>
+ 
+        <div className="row">
+          {filteredMovies.length > 0 ? (
+            filteredMovies.map((movie, index) => (
+          <div key={index} className="col-md-3 my-3">
+            <div
+          className="card bg-dark text-white"
+          style={{ cursor: "pointer" }}
+          onClick={() => window.location.href = `/details/movie/${movie.id}`}
+            >
+          <img
+            src={
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : 'https://via.placeholder.com/300x450?text=No+Image'
+            }
+            className="card-img-top"
+            alt={movie.title}
+          />
+          <div className="card-body">
+            <h5 className="card-title">{movie.title}</h5>
+          </div>
             </div>
-          ))
-        ) : (
-          <p className="text-center text-white">No movies found.</p>
-        )}
-      </div>
+          </div>
+            ))
+          ) : (
+            <p className="text-center text-white">No movies found.</p>
+          )}
+        </div>
+
+
     </div>
   );
 }

@@ -7,6 +7,7 @@ import Tvshow from './Components/Tvshow/Tvshow';
 import People from './Components/People/People';
 // import Login from './Components/Login/Login';
 // import Register from './Components/Register/Register';
+import Watchlist from "./Components/watchlist/watchlist";
 import Notfound from './Components/NotFound/Notfound';
 import jwtDecode from 'jwt-decode';
 import { useEffect, useState } from 'react';
@@ -28,8 +29,9 @@ function App() {
       {index:true , element: <Home/> },
       {path:"movies" , element:<ProdectRote><Movies/></ProdectRote> },
       {path:"tvshow" , element: <ProdectRote><Tvshow/></ProdectRote>},
+      { path: "watchlist", element: <Watchlist /> },
       {path:"people" , element:<ProdectRote><People/></ProdectRote> },
-      {path:"moviedetails/:id/:mediaType" , element:<ProdectRote><MovieDetails/></ProdectRote> },
+      { path: "details/:mediaType/:id", element: <MovieDetails /> },
       // {path:"login" , element: <Login saveUserData = {saveUserData}/>},
       // {path:"register" , element:<Register/> },
       {path:"*" , element: <Notfound/>},

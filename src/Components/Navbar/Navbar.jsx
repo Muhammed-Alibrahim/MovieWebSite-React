@@ -80,7 +80,13 @@ export default function Navbar() {
                   <Link className="nav-link active" to="/people">
                     People
                   </Link>
+
                 </li>
+                <li className="nav-item">
+              <Link className="nav-link active" to="/watchlist">
+                Watchlist
+              </Link>
+            </li>
               </ul>
             ) : (
               ''

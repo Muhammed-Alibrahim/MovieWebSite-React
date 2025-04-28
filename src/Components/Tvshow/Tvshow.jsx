@@ -40,32 +40,36 @@ export default function Tvshow() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-
-      {/* Display Filtered TV Shows */}
       <div className="row">
         {filteredTvShows.length > 0 ? (
           filteredTvShows.map((tvShow, index) => (
-            <div key={index} className="col-md-3 my-3">
-              <div className="card bg-dark text-white">
-                <img
-                  src={
-                    tvShow.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${tvShow.poster_path}`
-                      : 'https://via.placeholder.com/300x450?text=No+Image'
-                  }
-                  className="card-img-top"
-                  alt={tvShow.name}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{tvShow.name}</h5>
-                </div>
-              </div>
+        <div key={index} className="col-md-3 my-3">
+          <div
+            className="card bg-dark text-white"
+            style={{ cursor: "pointer" }}
+            onClick={() => window.location.href = `/details/tv/${tvShow.id}`}
+          >
+            <img
+          src={
+            tvShow.poster_path
+              ? `https://image.tmdb.org/t/p/w500${tvShow.poster_path}`
+              : 'https://via.placeholder.com/300x450?text=No+Image'
+          }
+          className="card-img-top"
+          alt={tvShow.name}
+            />
+            <div className="card-body">
+          <h5 className="card-title">{tvShow.name}</h5>
             </div>
+          </div>
+        </div>
           ))
         ) : (
           <p className="text-center text-white">No TV shows found.</p>
         )}
       </div>
+
+
     </div>
   );
 }
