@@ -1,10 +1,6 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
+import React from 'react';
 
 export default function ProdectRote(props) {
-  if(localStorage.getItem('token') !== null){
-    return props.children;
-  }else{
-   return <Navigate to={'/login'} />
-  }
+  // Always render the child components
+  return props.children;
 }
