@@ -30,9 +30,72 @@ nav{
 h3{
   color: var(--light-bg);
 }
-footer{
-  background-color : var(--bg-main)
-}
+
 .pointer{
   cursor: pointer;
+}
+/* Footer Styling */
+footer {
+  background-color: var(--bg-main);
+  color: var(--color-main);
+  padding: 20px 0;
+}
+
+footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+footer .footer-content .form-container,
+footer .footer-content .contact-container {
+  flex: 1;
+  min-width: 300px; /* Ensure proper spacing on smaller screens */
+  margin: 10px;
+}
+
+footer .footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer h4 {
+  color: var(--light-bg);
+  margin-bottom: 15px;
+}
+
+footer .btn-primary {
+  background-color: var(--light-bg);
+  border: none;
+}
+
+footer .btn-primary:hover {
+  background-color: #1a8dbf; /* Slightly darker hover effect */
+}
+
+footer p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+/* Ensure the body and html take up the full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure the container doesn't add extra height */
+.container {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Remove extra margin or padding from the row */
+.row {
+  margin: 0;
+  padding: 0;
 }
