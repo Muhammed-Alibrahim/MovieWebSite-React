@@ -1,39 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,400&display=swap');
-
-:root{
+/* Default Theme Variables (Dark Mode) */
+:root {
   --bg-main: #131722;
-  --color-main:#fff;
-  --light-bg:#24baef;
+  --color-main: #ffffff; /* Light text for dark mode */
+  --light-bg: #24baef;
   --border-color: #949cb0;
+  --nav-text-color: #ffffff; /* Light text for dark mode in navbar */
+  --welcome-text-color: #ffffff; /* Light text for dark mode */
+  --button-text-color: #ffffff; 
+}
 
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg-main: #ffffff; /* Light background */
+  --color-main: #000000; /* Dark text for light mode */
+  --light-bg: #007bff;
+  --border-color: #cccccc;
+  --nav-text-color: #000000; /* Dark text for light mode in navbar */
+  --welcome-text-color: #000000; /* Dark text for light mode */
+  --button-text-color: #000000; /* Dark text for light mode */
+  --button-bg-color: #007bff; /* Button background color for light mode */
+  --button-border-color: #007bff; /* Button border color for light mode */
+  --button-hover-bg-color: #ffffff; /* Button hover background color for light mode */
 }
-.text-gray{
-  color: var(--border-color);
-}
-body{
+
+/* Apply Theme Variables */
+body {
   background-color: var(--bg-main);
   color: var(--color-main);
   font-family: 'Montserrat', sans-serif !important;
 }
-.brdr{
-  background-color: var(--border-color);
-  height: 1px;
 
+nav {
+  color: var(--nav-text-color) !important;
 }
-.bg-main{
-  background-color: var(--bg-main) !important;
-}
-nav{
-  color: var(--color-main) !important;
 
-}
-h3{
+h3 {
   color: var(--light-bg);
 }
 
-.pointer{
-  cursor: pointer;
+.text-gray {
+  color: var(--border-color);
 }
+
+.pointer {
+  cursor: pointer;
+  color: var(--color-main);
+}
+
+/* Welcome Text Styling */
+.welcome-text {
+  color: var(--welcome-text-color);
+}
+
 /* Footer Styling */
 footer {
   background-color: var(--bg-main);
@@ -41,28 +59,14 @@ footer {
   padding: 20px 0;
 }
 
-footer .footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-footer .footer-content .form-container,
-footer .footer-content .contact-container {
-  flex: 1;
-  min-width: 300px; /* Ensure proper spacing on smaller screens */
-  margin: 10px;
-}
-
-footer .footer-bottom {
-  text-align: center;
-  margin-top: 20px;
-}
-
 footer h4 {
   color: var(--light-bg);
-  margin-bottom: 15px;
+}
+
+footer p {
+  color: var(--color-main);
+  margin: 5px 0;
+  font-size: 0.9rem;
 }
 
 footer .btn-primary {
@@ -74,10 +78,6 @@ footer .btn-primary:hover {
   background-color: #1a8dbf; /* Slightly darker hover effect */
 }
 
-footer p {
-  margin: 5px 0;
-  font-size: 0.9rem;
-}
 /* Ensure the body and html take up the full height */
 html, body {
   height: 100%;
@@ -88,7 +88,6 @@ html, body {
 
 /* Ensure the container doesn't add extra height */
 .container {
-  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -98,4 +97,28 @@ html, body {
 .row {
   margin: 0;
   padding: 0;
+}
+
+/* Default styles for .navbar-dark (Dark Mode) */
+.navbar-dark {
+  --bs-navbar-active-color: #fff; /* Active color for dark mode */
+  --bs-navbar-brand-color: #fff; /* Brand color for dark mode */
+  --bs-navbar-color: #fff; /* Text color for dark mode */
+}
+
+/* Override styles for Light Mode */
+[data-theme="light"] .navbar-dark {
+  --bs-navbar-active-color: #000; /* Active color for light mode */
+  --bs-navbar-brand-color: #000; /* Brand color for light mode */
+  --bs-navbar-color: #000; /* Text color for light mode */
+}
+/* Button Styling */
+.btn-outline-light {
+  color: var(--button-text-color); /* Dynamic button text color */
+  border-color: var(--button-text-color); /* Dynamic border color */
+}
+
+.btn-outline-light:hover {
+  background-color: var(--light-bg);
+  color: #ffffff; /* Ensure text is white on hover */
 }

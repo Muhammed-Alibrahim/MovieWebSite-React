@@ -1,22 +1,14 @@
-
-
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { auth } from '../../firebase/firebaseConfig';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from "../../context/ThemeContext";
 
 export default function Navbar() {
-  const context = useContext(AuthContext);
-  const [loading, setLoading] = useState(false); // Move useState to the top level
-
-  // Fallback if AuthContext is undefined
-  if (!context) {
-    console.error('AuthContext is undefined. Ensure AuthProvider wraps the app.');
-    return null;
-  }
-
-  const { user } = context;
+  const { user } = useContext(AuthContext); // Access AuthContext
+  const { theme, toggleTheme } = useContext(ThemeContext); // Access ThemeContext
+  const [loading, setLoading] = useState(false);
 
   // Google Sign-In Handler
   async function handleGoogleSignIn() {
@@ -59,44 +51,50 @@ export default function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {user ? (
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/">
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/movies">
-                    Movies
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/tvshow">
-                    TV Shows
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/people">
-                    People
-                  </Link>
-
-                </li>
-                <li className="nav-item">
-              <Link className="nav-link active" to="/watchlist">
-                Watchlist
-              </Link>
-            </li>
-              </ul>
-            ) : (
-              ''
-            )}
-
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link active" to="/">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/watchlist">
+                  Watchlist
+                </Link>
+              </li>
+              {user && (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link active" to="/movies">
+                      Movies
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link active" to="/tvshow">
+                      TV Shows
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link active" to="/people">
+                      People
+                    </Link>
+                  </li>
+                </>
+              )}
+            </ul>
             <ul className="navbar-nav mb-2 mb-lg-0 ms-auto">
+              <li className="nav-item">
+                <button
+                  className="btn btn-outline-light me-3"
+                  onClick={toggleTheme}
+                >
+                  {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                </button>
+              </li>
               {user ? (
                 <>
                   <li className="nav-item d-flex align-items-center">
-                    <span className="text-white me-3">
+                    <span className="welcome-text me-3">
                       Welcome, {user.displayName || user.email}
                     </span>
                   </li>
